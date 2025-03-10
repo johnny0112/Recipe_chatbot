@@ -21,7 +21,6 @@ def chunk_text(text, chunk_size=2):
     return chunks
 
 
-# Load the DataFrame once at module level
 df = load_data()
 
 def load_embedding_list():
