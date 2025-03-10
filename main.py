@@ -22,7 +22,7 @@ def set_menu(menu_option):
 
 if not st.session_state.show_chat:
     left, middle, right = st.columns(3)
-    middle.image("Image2.png", width=200)
+    middle.image("Image.png", width=200)
     st.header("AI chef-Osobní Michelinský kuchař 24/7 🧑‍🍳")
     st.subheader("Mějte k dispozici špičkového kuchaře, který se nikdy neunaví")
     st.write("AI chef je chatbot poháněný pokročilou umělou inteligencí, který vám umožní:")
