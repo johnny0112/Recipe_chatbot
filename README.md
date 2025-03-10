@@ -18,7 +18,7 @@ AI Chef is a cooking assistant application that utilizes Retrieval-Augmented Gen
 - **`RAG.py`**  
   Implements the Retrieval-Augmented Generation (RAG) pipeline.  
   `search_similarity()` retrieves the most similar recipe by comparing vector embeddings based on cosine similarity.  
-  `RAG_based_response()` constructs AI-driven instructions based on retrieved data.
+  `RAG_based_response()` constructs efficient prompts based on retrieved data.
 
 - **`initialize_embeddings.py.py`**  
   Prepares recipe data for embedding generation.  
@@ -27,5 +27,5 @@ AI Chef is a cooking assistant application that utilizes Retrieval-Augmented Gen
 
 - **`openai_api.py`**  
   Interfaces with the OpenAI API for text embedding and response generation.  
-  `get_embedding()` generates vector representations of recipe components.  
-  `get_response()` streams responses from the language model.
+  `get_embedding()` generates vector representations of recipe components based on model text-embedding-3-small.  
+  `get_response()` streams responses from the language model gpt-4o-2024-11-20.
