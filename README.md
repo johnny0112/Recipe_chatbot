@@ -30,7 +30,8 @@ AI Chef is a cooking assistant application that utilizes Retrieval-Augmented Gen
   `get_embedding()` generates vector representations of recipe components based on model text-embedding-3-small.  
   `get_response()` streams responses from the language model gpt-4o-2024-11-20.
 
+![image](https://github.com/user-attachments/assets/19e7f4c9-173b-40c2-bf47-8c11b2d566e4)
 
-![image](https://github.com/user-attachments/assets/efa5d812-f54f-4c51-bd53-d50e1077ff36)
+
 
 
