@@ -6,12 +6,13 @@ import numpy as np
 
 openai_client = get_client()
 
-
+#načtení dat, odstranění sloupce author_note, který nabývá všude stejné hodnoty
 def load_data():
     df = pd.read_csv("data.csv")
     df = df.drop(columns=['author_note'], axis=1)
     return df
 
+#rozdělení postupu u receptů do menších chunků
 def chunk_text(text, chunk_size=2):
     chunks=[]
     steps = text.split(". ")
@@ -23,6 +24,7 @@ def chunk_text(text, chunk_size=2):
 
 df = load_data()
 
+#načtení JSON souboru embeddingů
 def load_embedding_list():
     try:
         with open("data.json", "r", encoding="utf-8") as file:
@@ -35,13 +37,13 @@ def load_embedding_list():
     except (FileNotFoundError, json.JSONDecodeError):
         return []
 
-
+#výpočet cosinové podobnosti
 def cosine_similarity(u, v):
     u = np.array(u)
     v = np.array(v)
     return np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
 
-
+#hledání nejpodobnějšího receptu na základě cosinové podobnosti
 def search_similarity(prompt):
     embedding_list = load_embedding_list()
         
@@ -60,7 +62,7 @@ def search_similarity(prompt):
     similar_recipe_index, highest_similarity = most_similar_recipe
     return most_similar_recipe
 
-
+#vytvoření odpovědi od gpt 4o doplněné o RAG data
 def RAG_based_response(most_similar_recipe,query):
     similarity_threshold = 0.4
     similar_recipe_index, highest_similarity = most_similar_recipe
