@@ -5,6 +5,8 @@ from RAG import search_similarity, RAG_based_response
 
 client = get_client()
 
+#inicializace zda je uživatel na landing page nebo u chatbota
+
 if 'show_chat' not in st.session_state:
     st.session_state.show_chat = False
 
@@ -19,7 +21,7 @@ def activate_chat():
 def set_menu(menu_option):
     st.session_state.current_menu = menu_option
 
-
+#landing page frontend
 if not st.session_state.show_chat:
     left, middle, right = st.columns(3)
     middle.image("Image.png", width=200)
@@ -79,7 +81,8 @@ else:
                       args=("Chat",))
     st.sidebar.button("Historie", type=history_btn_style, key="history_btn", use_container_width=True,
                       on_click=set_menu, args=("Historie",))
-
+    
+    #frontend pro chatbota
     if st.session_state.current_menu == "Chat":
         st.header("AI Chef - Osobní Michelinský kuchař 24/7")
         st.write("Zeptejte se na jakýkoliv recept nebo nahrajte obrázek jídla.")
@@ -90,7 +93,8 @@ else:
         for message in st.session_state.messages:
             with st.chat_message(message["role"]):
                 st.write(message["content"])
-
+                
+        #zpracování uživatelských promptů
         prompt = st.chat_input("Zadejte recept, který chcete vyhledat...")
         if prompt:
             st.session_state.messages.append({"role": "user", "content": prompt})
@@ -113,7 +117,7 @@ else:
 
                 message_placeholder.write(full_response)
                 st.session_state.messages.append({"role": "assistant", "content": full_response})
-
+    #frontend pro stránku s historií dotazů a logika pro ukládání
     elif st.session_state.current_menu == "Historie":
         st.header("Historie vašich receptů")
         st.write("Zde najdete své dříve vyhledané recepty.")
