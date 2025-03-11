@@ -6,6 +6,7 @@ import time
 
 load_dotenv()
 
+#funkce na inicializaci Open AI klienta
 def get_client():
     api_key = os.environ.get("OPENAI_API_KEY")
     client = OpenAI(api_key=api_key)
@@ -13,6 +14,7 @@ def get_client():
 
 client=get_client()
 
+#funkce na získání odpovědí od gpt-4o
 def get_response(client, prompt):
     try:
         system_message = """
@@ -45,7 +47,7 @@ def get_response(client, prompt):
         print(f"Error in get_response: {str(e)}")
         yield "Chyba při komunikaci se serverem zajišťujícím Chef AI"
 
-
+#funkce na embedding uživatelských promtů
 def get_embedding(client,text):
     try:
         response = client.embeddings.create(
