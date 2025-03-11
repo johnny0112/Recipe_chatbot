@@ -5,6 +5,7 @@ import json
 import numpy as np
 from RAG import chunk_text, load_data
 
+#funkce na embedding původního csv souboru s recepty
 def transform_data(df):
     openai_client = get_client()
     embedding_list = []
@@ -23,7 +24,8 @@ def transform_data(df):
             "steps": steps_embedding
         })
     return embedding_list
-
+    
+#načtení csv souboru, transformace do embeddingu a uložení ve formě JSON souboru
 def main():
     df = load_data()
     embedding_list = transform_data(df)
